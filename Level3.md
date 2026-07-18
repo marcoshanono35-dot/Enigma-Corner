@@ -33,7 +33,7 @@ In the network captures section we can find an alert that tells us that **login.
 <img src="image/level3-q8.png" alt="Actor" width="250" /> <br>
 
 ## 9. From which country did the malicious sign-in originate?
-A look at the threat intelligence tells us that this attack originated in **the Netherlands**
+A look at the threat intelligence tells us that this attack originated in **the Netherlands** <br>
 <img src="image/level3-q9.png" alt="Actor" width="250" /> <br>
 
 ## 10. The DBA d/p.hollis exported a customer database. Is that part of THIS intrusion? (yes / no)
