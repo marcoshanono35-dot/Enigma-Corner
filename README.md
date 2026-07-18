@@ -10,7 +10,7 @@ Each scenario has the following: A set of case files, which contains valuable da
 Even though I said you need to go through and build your report on the case, it does that for you as you discover information and answer the questions. While not necessarily as useful as doing it yourself, it does give beginners a way to look at a template of sorts to see what a good report may look like, though I myself am no professional, so perhaps take that with a grain of salt. 
 
 ### The Pros
-Enigma Corner does have an absolute wealth of pros, which I intend to outline in this section of my review.
+Enigma Corner does have an absolute wealth of pros, which truly help it get a higher rating.
 
     - It's highly interactive
     - It shoulders the burden of the various tools needed
@@ -26,7 +26,7 @@ Enigma Corner does have an absolute wealth of pros, which I intend to outline in
     - It has more human-readable notes to explain what is happening in each artifact
 
 ### The Cons
-While fewer in number than the pros, there are some aspects of this approach that I would consider to be cons, which I intend to outline in this section of my review.
+While fewer in number than the pros, there are some aspects of this approach that I would consider to be cons, which may not seem significant at a glance but definitely could be as you look deeper.
 
     - The automatic highlighting makes searching too easy
     - The answers for each scenario can typically be found in the same few locations
