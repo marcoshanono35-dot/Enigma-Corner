@@ -1,6 +1,6 @@
 # Review
 
-Enigma Corner (https://enigmacorner.com/) is a DFIR learning resource recommended to me by a good friend. He asked me to go through the website, complete the activities, and determine whether this is a good resource for others interested in breaking into the DFIR field, like I am. <br>
+Enigma Corner (https://enigmacorner.com/) is a DFIR learning resource recommended to me by a good friend. He asked me to go through the website, complete the activities, and determine whether this is a good resource for others interested in breaking into the DFIR field, like I am.  ###IT HAS SINCE BEEN REMOVED AS OF 9/9/2026### <br>
 
 ### Overview
 The Enigma Corner website does something that I have not seen anywhere else in all the DFIR learning tools and resources that I have been recommended thus far, in that it manages to encompass all the various tools and artifact views that one would need to "solve" these cases into one place. From looking through various forensic artifacts to making a timeline or investigation board to their own "in-house" version of VirusTotal (specifically for the artifacts in the exercises) they truly have it all. 
