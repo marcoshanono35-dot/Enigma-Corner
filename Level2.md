@@ -1,40 +1,101 @@
-# Level 2: Hollow Transit
+# Level 2: Hollow Transit — Forensic Analysis Write-Up
+
+This write-up covers the investigation into the "Hollow Transit" advanced intrusion scenario, detailing patient-zero discovery, LOLBin abuse, persistence, network evasion, and threat actor attribution.
+
+---
 
 ## 1. Which user account was the TRUE initial-access victim (patient zero)?
-Looking at the case files, we can see that **s.okafor** is the true patient zero of this attack. <br>
-<img src="image/level2-q1.png" alt="compromised user" width="250" /> <br>
+
+Reviewing the overarching case timeline and authentication logs isolates the primary account compromised at the perimeter prior to lateral traversal.
+
+**Answer:** `s.okafor`
+
+<img src="image/level2-q1.png" alt="Patient Zero Account Identification" width="500" />
+
+---
 
 ## 2. What was the initial-access vector?
-The initial access vector was an **unsigned DLL file** which was loaded and launched by a legitimate app. This information is available through the security logs section of the website. <br>
-<img src="image/level2-q2.png" alt="dll" width="250" /> <br>
+
+Event log analysis identifies an unsigned, untrusted dynamic link library (DLL) executed via dynamic link library sideloading/proxy loading by an otherwise legitimate host executable.
+
+**Answer:** Unsigned DLL (DLL Sideloading)
+
+<img src="image/level2-q2.png" alt="Unsigned DLL Execution Alert" width="500" />
+
+---
 
 ## 3. Which living-off-the-land binary (LOLBin) downloaded the second stage?
-Looking at the same section of the website, we can see that **certutil.exe** is the LOLBin in question. <br>
-<img src="image/level2-q3.png" alt="lolbin" width="250" /> <br>
+
+Examining process creation events shows the native Windows certificate utility being abused to retrieve remote secondary payloads directly to disk.
+
+**Answer:** `certutil.exe`
+
+<img src="image/level2-q3.png" alt="Certutil Stager Execution" width="500" />
+
+---
 
 ## 4. What persistence technique was established?
-Also in the same area is the **WMI filter**, which acts as the method of persistence for this attack. <br>
-<img src="image/level2-q4.png" alt="persistence" width="250" /> <br>
+
+Security auditing captures Windows Management Instrumentation (WMI) event subscriptions deployed on the endpoint, specifically leveraging an active **WMI event filter** bound to an event consumer.
+
+**Answer:** WMI Event Filter (T1546.003)
+
+<img src="image/level2-q4.png" alt="WMI Persistence Mechanism" width="500" />
+
+---
 
 ## 5. What domain was used for DNS-tunnelling C2?
-In the same place is another alert containing the domain **3f9a2c.sync.telemetry-cdn.io**, which is the domain in question. <br>
-<img src="image/level2-q5.png" alt="domain" width="250" /> <br>
+
+Network inspection reveals high-frequency, anomalous DNS query lengths utilized for covert data encapsulation and C2 communications.
+
+**Answer:** `3f9a2c.sync.telemetry-cdn.io`
+
+<img src="image/level2-q5.png" alt="DNS Tunnelling Query Telemetry" width="500" />
+
+---
 
 ## 6. What is the C2 IP address?
-From the network interceptions, we can see that the C2 IP is **45.83.220.19** <br>
-<img src="image/level2-q6.png" alt="c2" width="250" /> <br>
+
+Correlating the captured network flows reveals the resolved C2 IP address receiving encapsulated communications.
+
+**Answer:** `45.83.220.19`
+
+<img src="image/level2-q6.png" alt="C2 Network Interception Record" width="500" />
+
+---
 
 ## 7. Which technique was used for lateral movement?
-Back to the security logs, it can be clearly seen that lateral movement was done via **WinRM** <br>
-<img src="image/level2-q7.png" alt="LM" width="250" /> <br>
+
+Review of Windows event telemetry identifies successful remote process instantiation and protocol binding via Windows Remote Management.
+
+**Answer:** WinRM (Windows Remote Management)
+
+<img src="image/level2-q7.png" alt="Lateral Movement Event Log" width="500" />
+
+---
 
 ## 8. What intellectual property was exfiltrated?
-by navigating the filesystem to **C:\Users\s.okafor\AppData\Local\Temp\t.cab** we can see that the **tape-out archive** was staged and exfiltrated. <br>
-<img src="image/level2-q8.png" alt="LM" width="250" /> <br>
+
+Forensic inspection of the staging path `C:\Users\s.okafor\AppData\Local\Temp\t.cab` confirms the adversary compressed and packaged proprietary semiconductor design files for extraction.
+
+**Answer:** Tape-out archive
+
+<img src="image/level2-q8.png" alt="Exfiltrated Intellectual Property Archive" width="500" />
+
+---
 
 ## 9. The insider d.raymond looks suspicious. Are they responsible for the intrusion? (yes / no)
-Given the evidence at hand, we can reasonably conclude that this employee was not responsible for the intrusion.<br>
+
+Correlating endpoint execution logs and network telemetry confirms that `d.raymond` was not the vector or operator behind this intrusion sequence.
+
+**Answer:** No
+
+---
 
 ## 10. Which threat actor is attributed to this intrusion?
-A quick look at the threat intelligence tells us that **SLATE TYPHOON** is responsible for this attack.<br>
-<img src="image/level2-q10.png" alt="LM" width="250" /> <br>
+
+Threat intelligence correlation against the DNS tunneling infrastructure, WMI persistence tradecraft, and specialized payload signatures links this intrusion to the adversary group **SLATE TYPHOON**.
+
+**Answer:** SLATE TYPHOON
+
+<img src="image/level2-q10.png" alt="Threat Intelligence Actor Attribution" width="500" />
